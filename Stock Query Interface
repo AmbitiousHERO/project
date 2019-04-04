@@ -1,0 +1,29 @@
+import pandas as pd
+import tushare as ts
+import openpyxl
+from openpyxl import load_workbook
+import numpy as np
+import time
+from tkinter import *
+from tkinter import ttk
+from pandastable import Table, TableModel
+import tkinter as tk
+
+window = tk.Tk()  # 建立一个窗口
+window.title('财经数据查询窗口')
+window.geometry('300x200') 
+
+e=tk.Entry() #设置输入框 输入时显示
+e.pack()
+l=tk.Label(window,text='请输入股票代码：',bg='green',font=('Arial',12),width=15,height=2)
+l.pack()
+
+
+def input_code():
+    code=e.get()
+    pos_data=ts.get_hist_data(code)
+    print(pos_data)
+    
+b1=tk.Button(text="查询",width=20,height=2,command=input_code)
+b1.pack()
+window.mainloop
